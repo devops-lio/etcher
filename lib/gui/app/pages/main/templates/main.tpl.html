@@ -111,7 +111,7 @@
       </div>
 
       <div class="space-vertical-large">
-        <progress-button class="button-brick"
+        <!-- <progress-button class="button-brick"
           tabindex="3"
           percentage="main.state.getFlashState().percentage"
           striped="{{ main.state.getFlashState().type == 'check' }}"
@@ -119,7 +119,8 @@
           ng-click="flash.flashImageToDrive(main.selection.getImage(), main.selection.getSelectedDevices())"
           ng-disabled="main.shouldFlashStepBeDisabled() || main.state.getLastFlashErrorCode()">
             <span ng-bind="flash.getProgressButtonLabel()"></span>
-        </progress-button>
+        </progress-button> -->
+        <progress-button></progress-button>
 
         <button class="button button-link button-abort-write"
           ng-if="main.state.isFlashing()"
