@@ -6,11 +6,14 @@ import { Button, ProgressBar, Provider } from 'rendition';
 
 export default class ProgressButton extends React.Component {
 
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.handleClick = this.handleClick.bind(this);
     this.state = {
-      openBar: false
+      openBar: false,
+      disabled: props.disabled,
+      percentage: props.percentage,
+      label: props.label
     }
   }
 
@@ -21,14 +24,14 @@ export default class ProgressButton extends React.Component {
   render () {
     if (this.state.openBar) {
       return (
-        <Bar/>
+        <Bar props={this.state.percentage}/>
       )
     }
     else {
       return (
         <Provider>
-          <Button primary onClick={this.handleClick}>
-            Click!
+          <Button primary onClick={this.handleClick} disabled={this.state.disabled}>
+            {this.state.label}
           </Button>
         </Provider>
       )
@@ -38,26 +41,13 @@ export default class ProgressButton extends React.Component {
 
 class Bar extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
+    console.log({props})
     this.state = {
-      value: 0
+      value: this.props
     }
-  }
-
-  componentDidMount () {
-    this.progressInterval = setInterval(() => {
-      let value = this.state.value + 1
-      if (value > 100) {
-        value = 0
-      }
-      this.setState({ value })
-    }, 250)
-  }
-
-  componentWillUnmount () {
-    window.clearInterval(this.progressInterval)
   }
 
   render () {
@@ -72,7 +62,10 @@ class Bar extends React.Component {
 }
 
 ProgressButton.propTypes = {
-  path: propTypes.string,
+  striped: propTypes.boolean,
+  percentage: propTypes.number,
+  label: propTypes.string,
+  disabled: propTypes.boolean
 }
 
 module.exports = ProgressButton

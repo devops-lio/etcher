@@ -120,7 +120,11 @@
           ng-disabled="main.shouldFlashStepBeDisabled() || main.state.getLastFlashErrorCode()">
             <span ng-bind="flash.getProgressButtonLabel()"></span>
         </progress-button> -->
-        <progress-button></progress-button>
+        <progress-button
+          percentage="main.state.getFlashState().percentage"
+          label="flash.getProgressButtonLabel()"
+          disabled="main.shouldFlashStepBeDisabled() || main.state.getLastFlashErrorCode()" >
+        </progress-button>
 
         <button class="button button-link button-abort-write"
           ng-if="main.state.isFlashing()"
