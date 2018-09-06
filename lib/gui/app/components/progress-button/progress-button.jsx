@@ -24,6 +24,7 @@ export default class ProgressButton extends React.Component {
   handleClick = () =>
     this.setState({ openBar: true })
 
+
   render = () => {
     console.log(this.state)
     if (this.state.openBar) {
