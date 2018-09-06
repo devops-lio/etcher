@@ -1,3 +1,5 @@
+'use strict'
+
 const React = require('react')
 const ReactDOM = require('react-dom')
 const propTypes = require('prop-types')
@@ -8,23 +10,25 @@ export default class ProgressButton extends React.Component {
 
   constructor (props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this);
     this.state = {
       openBar: false,
-      disabled: props.disabled,
-      percentage: props.percentage,
-      label: props.label
+      percentage: this.props.percentage,
+      label: this.props.label,
+      disabled: this.props.shouldFlashStepBeDisabled || this.props.getLastFlashErrorCode
     }
   }
 
-  handleClick () {
-    this.setState({ openBar: true })
-  }
+  static getDerivedStateFromProps = (props, state) =>
+    state.disabled = props.shouldFlashStepBeDisabled || props.getLastFlashErrorCode
 
-  render () {
+  handleClick = () =>
+    this.setState({ openBar: true })
+
+  render = () => {
+    console.log(this.state)
     if (this.state.openBar) {
       return (
-        <Bar props={this.state.percentage}/>
+        <Bar props={this.state}/>
       )
     }
     else {
@@ -44,13 +48,14 @@ class Bar extends React.Component {
   constructor(props) {
     super(props)
 
-    console.log({props})
+    console.log(this.props)
+
     this.state = {
-      value: this.props
+      value: this.props.percentage
     }
   }
 
-  render () {
+  render = () => {
     return (
       <Provider>
         <ProgressBar primary emphasized value={this.state.value}>
@@ -62,10 +67,10 @@ class Bar extends React.Component {
 }
 
 ProgressButton.propTypes = {
-  striped: propTypes.boolean,
   percentage: propTypes.number,
   label: propTypes.string,
-  disabled: propTypes.boolean
+  shouldFlashStepBeDisabled: propTypes.func,
+  getLastFlashErrorCode: propTypes.func
 }
 
 module.exports = ProgressButton
