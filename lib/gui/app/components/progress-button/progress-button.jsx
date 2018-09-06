@@ -13,7 +13,7 @@ export default class ProgressButton extends React.Component {
 
     this.state = {
       openBar: false,
-      disabled: false
+      disabled: false,
     }
   }
 
@@ -29,7 +29,11 @@ export default class ProgressButton extends React.Component {
   render = () => {
     if (this.state.openBar) {
       return (
-        <Bar percentage={this.props.percentage}/>
+        <Provider>
+          <ProgressBar primary emphasized value={this.props.percentage}>
+            {this.props.percentage}%
+          </ProgressBar>
+        </Provider>
       )
     }
     else {
@@ -44,19 +48,19 @@ export default class ProgressButton extends React.Component {
   }
 }
 
-class Bar extends React.Component {
+/* class Bar extends React.Component {
 
   constructor(percentage) {
     super(percentage)
     console.log(this.props.percentage)
     this.state = {
-      value: 0
+      value: this.props.percentage().percentage
     }
   }
 
   componentDidMount = () => {
     console.log("componentdidmount: ", this.props.percentage().percentage)
-    this.setState({value: this.props.percentage().percentage})
+    this.setState({value: this.props.percentage()})
   }
 
   render = () => {
@@ -68,7 +72,7 @@ class Bar extends React.Component {
       </Provider>
     )
   }
-}
+} */
 
 ProgressButton.propTypes = {
   percentage: propTypes.func,
