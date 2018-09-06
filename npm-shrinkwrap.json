@@ -8223,8 +8223,9 @@
       "resolved": "https://registry.npmjs.org/stylis-rule-sheet/-/stylis-rule-sheet-0.0.10.tgz"
     },
     "sudo-prompt": {
-      "version": "8.0.0",
-      "resolved": "https://registry.npmjs.org/sudo-prompt/-/sudo-prompt-8.0.0.tgz"
+      "version": "8.2.0",
+      "from": "zvin/sudo-prompt#use-localhost",
+      "resolved": "git://github.com/zvin/sudo-prompt.git#f63d2531d1b90f6e09d54d6690c76a3a68bdad7c"
     },
     "sumchecker": {
       "version": "1.3.1",
