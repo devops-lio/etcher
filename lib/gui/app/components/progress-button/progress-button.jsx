@@ -10,33 +10,33 @@ export default class ProgressButton extends React.Component {
 
   constructor (props) {
     super(props)
+
     this.state = {
       openBar: false,
-      percentage: this.props.percentage,
-      label: this.props.label,
-      disabled: this.props.shouldFlashStepBeDisabled || this.props.getLastFlashErrorCode
+      disabled: false
     }
   }
 
-  static getDerivedStateFromProps = (props, state) =>
+  static getDerivedStateFromProps = (props, state) => {
     state.disabled = props.shouldFlashStepBeDisabled || props.getLastFlashErrorCode
+  }
 
-  handleClick = () =>
+  handleClick = () => {
     this.setState({ openBar: true })
-
+    this.props.flash(this.props.image(),this.props.device())
+  }
 
   render = () => {
-    console.log(this.state)
     if (this.state.openBar) {
       return (
-        <Bar props={this.state}/>
+        <Bar percentage={this.props.percentage}/>
       )
     }
     else {
       return (
         <Provider>
           <Button primary onClick={this.handleClick} disabled={this.state.disabled}>
-            {this.state.label}
+            {this.props.label}
           </Button>
         </Provider>
       )
@@ -46,14 +46,17 @@ export default class ProgressButton extends React.Component {
 
 class Bar extends React.Component {
 
-  constructor(props) {
-    super(props)
-
-    console.log(this.props)
-
+  constructor(percentage) {
+    super(percentage)
+    console.log(this.props.percentage)
     this.state = {
-      value: this.props.percentage
+      value: 0
     }
+  }
+
+  componentDidMount = () => {
+    console.log("componentdidmount: ", this.props.percentage().percentage)
+    this.setState({value: this.props.percentage().percentage})
   }
 
   render = () => {
@@ -68,10 +71,14 @@ class Bar extends React.Component {
 }
 
 ProgressButton.propTypes = {
-  percentage: propTypes.number,
+  percentage: propTypes.func,
   label: propTypes.string,
   shouldFlashStepBeDisabled: propTypes.func,
-  getLastFlashErrorCode: propTypes.func
+  getLastFlashErrorCode: propTypes.func,
+  flash: propTypes.func,
+  image: propTypes.func,
+  device: propTypes.func,
+  flash: propTypes.func
 }
 
 module.exports = ProgressButton

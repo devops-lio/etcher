@@ -121,10 +121,13 @@
             <span ng-bind="flash.getProgressButtonLabel()"></span>
         </progress-button> -->
         <progress-button
-          percentage="main.state.getFlashState().percentage"
+          percentage="main.state.getFlashState"
           label="flash.getProgressButtonLabel()"
           should-flash-step-be-disabled="main.shouldFlashStepBeDisabled()"
           get-last-flash-error-code="main.state.getLastFlashErrorCode()"
+          image="main.selection.getImage"
+          device="main.selection.getSelectedDevices"
+          flash="flash.flashImageToDrive" >
         </progress-button>
 
         <button class="button button-link button-abort-write"
