@@ -14,6 +14,7 @@ Image Selection
 - [ ] Attempt to select a tar archive (with any compression method)
 - [ ] Change image selection
 - [ ] Select a Windows image, and expect a sensible warning
+  - [Windows 10 ISO Download](https://www.microsoft.com/en-au/software-download/windows10ISO)
 
 Drive Selection
 ---------------
@@ -48,8 +49,11 @@ Run the following tests with and without validation enabled:
 - [ ] Flash a compressed image whose size is not a multiple of 512 bytes
 - [ ] Flash an archive whose image size is not a multiple of 512 bytes
 - [ ] Flash an archive image containing a logo
+  - [ev3dev](https://github.com/ev3dev/ev3dev/releases/latest)
 - [ ] Flash an archive image containing a blockmap file
+  - [ev3dev](https://github.com/ev3dev/ev3dev/releases/latest)
 - [ ] Flash an archive image containing a manifest metadata file
+  - [ev3dev](https://github.com/ev3dev/ev3dev/releases/latest)
 
 Flashing Process
 ----------------
