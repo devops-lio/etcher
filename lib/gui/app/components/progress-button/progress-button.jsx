@@ -6,7 +6,6 @@ import styled, { ThemeProvider } from 'styled-components'
 import { Button, ProgressBar, Provider } from 'rendition'
 
 import createTheme from 'styled-components-theme'
-// import theme from './../../scss/modules/_theme'
 
 const StyledButton = styled(Button).attrs({
   className: "flash-button"
@@ -38,7 +37,7 @@ export default class ProgressButton extends React.Component {
   }
 
   render () {
-    console.log(this.props.active)
+    console.log(this.props.label)
     if (this.props.active) {
       return (
         <Provider>

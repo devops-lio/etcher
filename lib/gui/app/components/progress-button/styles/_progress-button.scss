@@ -45,14 +45,20 @@
  $progress-button-stripes-animation-duration: 1s;
 
 .flash-button {
-  @extend .button;
   @extend .button-primary;
+  @extend .button-brick;
+
+  overflow: hidden;
 }
 
 .flash-progress-bar {
 
+  width: 100%;
+  max-width: $btn-min-width;
+  margin: auto;
+
   &[striped="true"] {
-    $progress-button-stripes-background-color: desaturate($palette-theme-primary-background, 5%);
+    /* $progress-button-stripes-background-color: desaturate($palette-theme-primary-background, 5%);
     $progress-button-stripes-foreground-color: desaturate(darken($palette-theme-primary-background, 18%), 20%);
 
     // Notice that we add `0.01` to certain gradient stop positions.
@@ -73,7 +79,7 @@
 
     background-size: $progress-button-stripes-width $progress-button-stripes-width;
     animation: progress-button-stripes $progress-button-stripes-animation-duration linear infinite;
-    overflow: hidden;
+    overflow: hidden; */
   }
 
 }
